@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+        
+<head>
+        <title>Dixie Alley</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" / >
+            
+        <!-- THESE ARE THE CSS FILES I ADDED -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Domine:400,700">
+            
+
+                <!-- THESE ARE THE JAVASCRIPT FILES I ADDED -->
+                <script src="http://bloximages.newyork1.vip.townnews.com/columbiamissourian.com/content/tncms/live/components/jquery/resources/scripts/jquery.min.js?_dc=1423174924"></script>
+                 <script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery-1.9.1.js"></script>
+                <script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery-ui-1.10.2.custom.js"></script>
+                <script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery.ui.tooltip.js"></script>
+                <script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery.cycle.all.js"></script>
+
+                <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+                <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+                <!-- TAKE THESE OUT TO PUBLISH ON COLUMBIAMISSOURIAN.COM -->
+                <script src="http://code.highcharts.com/highcharts.js"></script>
+                <script src="http://code.highcharts.com/modules/exporting.js"></script>
+                <script type="text/javascript" src="http://media.columbiamissourian.com/highcharts_restyle/missourian.js"></script>
+        <!-- END -->
+
+        <style>
+        /*! jQuery UI - v1.10.2 - 2013-03-17
+        * http://jqueryui.com
+        * Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css
+        * Copyright 2013 jQuery Foundation and other contributors Licensed MIT */
+
+        .domine {
+            font-family:Domine;
+        }
+
+        .centered {
+            text-align: center;
+            margin: 0 0 25px 0;
+            font-family: inerit;
+            line-height: 1.5em;
+        }
+
+        /* ABOUT THE SINGLE-DOUBLE-TRIPLE CLASSES */
+
+        .single {
+            width: 50%;
+            height: auto;
+            margin: auto; 
+        }
+
+        .double {
+            width: 47%;
+            /*min-width: 270px;
+            height: auto;
+            margin: auto;*/
+            padding: 0 3% 0 0;
+            float: right; 
+        }
+
+        /*.triple {
+            width: 30%;
+            min-width: 270px;
+            height: auto;
+            margin: auto;
+            padding: 0 3% 0 0;
+            float: left; 
+        }*/
+
+        /* ABOUT THE GRAPHIC DIV */
+
+        .graphic{
+            width: 100%;
+            height: auto;
+            margin: 30px auto 0 auto ;
+        }
+
+        .graphic h4 {
+            padding: 0;
+            margin: 0 0 4px 0;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            font-size: 1.3em;
+            line-height: 1.3em;
+            }
+            
+        .graphic p, .graphic2 p {
+            width: 100%;
+            padding: 0;
+            margin: 0 0 8px 0;
+            font-family:  'Open Sans', sans-serif;
+            font-size: 1em;
+            line-height: 1.3em;
+            color: #666;
+            }
+            
+        .graphic img{
+            width: 80%;
+            height: auto;
+            }
+                
+        /*.graphic div{
+            /*width: 100%;
+            height: auto;
+        }*/
+
+       
+            /*.triple { 
+                width:100%;
+            }*/
+
+        .tab-nav a {
+            background: none repeat scroll 0 0 white;
+            border: 1px solid #CCCCCC;
+            color: #444444;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0 -1px 0 0;
+            padding: 2px 10px 2px;
+            text-decoration: none;
+            font-family: sans-serif;
+        }
+
+        .tab-nav a.activeSlide {
+            background: none repeat scroll 0 0 #E8E8E8;
+            color: #000000;
+        }
+
+        .tab-nav {
+            width: auto !important;
+            float: left;
+            margin: 10px 10px 0 0;
+            height: 44px;
+        }
+
+        .tab-wrapper {
+            margin: 0 auto -1px auto;
+            height: 20px;
+        }  
+        
+        #panel_graphic {
+            margin: 10px 0 0 0;
+            position: relative;
+            width: 100% !important;
+        }
+
+        .panel-line {
+            border-top: 1px solid #FFFFFF;
+            line-height: 0;
+        }
+
+        .panel {
+            position: relative;
+            display: block;
+            left: 0;
+            opacity: 1;
+            padding: 5px 0 0 0;
+            z-index: 4;
+            background-color: white;
+        }
+
+        .single-bottom {
+
+        width: 1000px;
+        height: auto;
+        margin: auto; 
+
+        }
+
+        </style>
+
+</head>
+
+
+<body id="site" class="base">
+
+    <div id="main" style="max-width: 930px; margin: auto;">
+    
+<!-- ////////////////////FILL OUT BELOW FOR HEADLINE AND YOUR INFO ////////////////////////////// -->
+        <div class="centered">  
+                <h1 class='domine'>Dixie Alley Most Deadly Tornado Region in America</h1>
+                <p class="body domine">'Dixie Alley' is used to describe the southeastern states of the U.S. that have seen an increase in the number of tornadoes in recent years. Those states commonly include Alabama, Arkansas, Georgia, Louisiana, Mississippi and Tennessee. According to John P. Gagan of the National Weather Service, the term was coined by former National Severe Storms Forecast Center director Allen Pearson in 1971.</p>
+
+                <p class="body domine">
+                The number of tornadoes in the U.S. spiked to 2,073 in 2011, the first time on record that the 2,000 mark was eclipsed in a calendar year. The states in the so-called ‘Tornado Alley’ - Iowa, Kansas, Nebraska, Oklahoma and Texas - have seen the most twisters in the past 55 years, but Dixie Alley is now demanding the attention of meteorologists across the nation.</p>
+                <div class="byline">By <a href="http://www.twitter.com/daniellevitt32" target="blank">Daniel Levitt</a> | May 14, 2016</div>
+                <hr />
+        </div>
+       
+
+      <div class="double">
+            <div class="graphic">
+            <div class="centered">
+                <h4>No. of U.S. tornadoes quadruple since 1963</h4>
+                <p class="body domine">The number of tornadoes in the U.S. has steadily risen since 1963 when 493 occurred. However, having peaked with 2,073 in 2011,  the number of tornadoes to touch down has since trended downward. At the end of September, 2016, the NWS estimated that there had been 953 tornadoes. Only 2013 had fewer reports over the past 11 years.</p>
+                <img src="images/line-chart.gif" alt="line-chart" />
+
+    
+            </div>
+            </div>
+        </div>
+
+        <div class="double">
+            <div class="graphic">
+            <div class="centered">
+                <h4>Dixie Alley narrowing gap at alarming rate 
+                </h4>
+                <p class="body">Can Dixie Alley overtake its neighbor in terms of number of tornadoes in the future? That's hard to say, but nevertheless, its percentage of all U.S tornadoes has increased since 1960 from 14 percent to 23 in 2015. Tornado Alley's percentage has decreased from 40.3 percent to 30.1 over the same period.</p>
+                <img src="images/line-chart2.gif" alt="line-chart2" />
+        </div>
+            </div>
+            </div>
+
+            </body>
+                
+                
+        <div class="single">
+        <!-- 1-2-3 PANEL GRAPHIC -->    
+
+            <div id="graphic">
+                <div class="graphic">
+                        <h4>Dixie Alley emerges as new hot spot for tornado hunting</h4>
+
+                        <p>Between 1970 and 1979, Dixie Alley began to take shape as a recognized region for tornadoes, with five of its six states recording more than 200 tornadoes in the decade for the first time. The region saw a record 2,918 tornadoes between 2000-2009, with Tennesssee being the only state not to report more than 400 tornadoes. In the first six years of this decade, 23 percent of tornadoes in the U.S. touched down in Dixie Alley, compared with 30 percent in Tornado Alley. This difference of seven percent is the smallest difference on record.</p> 
+                        <!-- LEAVE THIS PART ALONE...IT SETS UP THE NUMBERING AT THE TOP AUTOMATICALLY -->
+                        <div class="tab-wrapper">
+                            <div id="panel_tabs" class="tab-nav"></div>
+                            <div class="tab-nav">
+                               <a id="next_panel" href="#">Next&nbsp;&raquo;</a>    
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        <div class="panel-line"></div>
+                
+                        <!-- PUT YOUR INFORMATION IN THIS SECTION. COPY THE WHOLE PANEL DIV IF YOU NEED TO ADD ANOTHER PANEL AND PASTE IT BELOW THE LAST PANEL IN THIS GROUP -->
+                        
+
+                        <div id="panel_graphic">
+                            
+
+                                <div class="panel">
+                                    <p class="body">Tornado Alley was the dominant region in the United States. Texas overwhelmingly saw the largest number of tornadoes with 1,195, almost double that of Oklahoma which had the second most.</p>                          
+                                    <img src="images/HeatMap1.gif" alt=""/>
+                                </div>
+                                
+                                <div class="panel">
+                                    <p class="body">The 1970s was when Dixie Alley take shape. The region saw 1,738 tornadoes, an increase of 72 percent from a decade earlier.</p>
+                                    <img src="images/HeatMap2.gif" alt=""/>
+                                </div>                  
+                                
+                                <div class="panel">
+                                    <p class="body">The 80s saw a fall of 12 percent in the number of tornadoes to touch down in Dixie Alley.</p>
+                                    <img src="images/HeatMap3.gif" alt=""/>
+                                </div>
+                                            
+                                <div class="panel">
+                                    <p class="body">Dixie Alley recorded 1,799 tornadoes in the 90s, the most ever for the region. Louisiana eclipsed 400 tornadoes for the first time.</p>
+                                    <img src="images/HeatMap4.gif" alt=""/>
+                                </div>
+
+                                <div class="panel">
+                                    <p class="body">Between 2000 and 2009 was when Dixie Alley announced itself to meteorologists as a competitor to Tornado Alley. The southeastern states recorded a total of 2,918, an increase of 62 percent. </p>
+                                    <img src="images/HeatMap5.gif" alt=""/>
+                                </div>
+
+                                <div class="panel">
+                                    <p class="body"></p>
+                                    <img src="images/HeatMap6.gif" alt=""/>
+                                </div>
+                        </div>
+                </div>
+            </div>
+
+</div>
+
+<script>
+
+                            if ($('#graphic').find('#panel_graphic').length > 0){
+                            $('#graphic').find('#panel_graphic').cycle({ 
+                                fx:     'fade', 
+                                speed:  250, 
+                                timeout:0, 
+                                nowrap: true,
+                                next:   '#next_panel', 
+                                pager:  '#panel_tabs'
+                            });
+                            $('#next_panel').click(function() {
+                                var num_panels = $(this).parent().siblings('#panel_tabs').find('a').length,
+                                    curr_idx = $(this).parent().siblings('#panel_tabs').find('.activeSlide').index();
+                                    
+                                if (num_panels-1 == curr_idx) {
+                                    if ($(this).hasClass('last')) {
+                                        $(this).parent().siblings('#panel_tabs').find('a').first().click();
+                                        $(this).removeClass('last').html('Next&nbsp;&raquo;');
+                                    } else {
+                                        $(this).addClass('last').html('Start over');
+                                    }
+                                } else {
+                                    $(this).removeClass('last').html('Next&nbsp;&raquo;');
+                                }
+                            });
+                            
+                            $('#panel_tabs').children('a').click(function() {
+                                if ($(this).index() == $(this).parent().children('a').length-1) {
+                                    $('#next_panel').addClass('last').html('Start over');
+                                } else {
+                                    $('#next_panel').removeClass('last').html('Next&nbsp;&raquo;');
+                                }
+                            });
+                        }
+            </script>
+
+            <div class="single-bottom">
+            <div class="graphic">
+            <div class="centered">
+                <h4>Alabama most deadly tornado state</h4>
+                <p class="body domine">Alabama, Mississippi and Arkansas all rank inside the top four states for combined  injuries and deaths caused directly by tornadoes since 1960. Two main reasons for this, according to the National Weather Services’ John P. Gagan, Alan Gerard and John Gordon, are that Dixie Alley sees stronger tornadoes occur in the early hours of the morning, as well as there not being as many storm shelters than in Tornado Alley.</p>
+                <img src="images/bottomcharts.gif" alt="bottomcharts" />
+
+            </div>
+            </div>
+        </div>
+          
+
+
+
+
+
+          
+           
